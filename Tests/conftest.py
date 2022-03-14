@@ -16,7 +16,7 @@ def driver():
     os.environ["WDM_LOCAL"] = "1"
 
     options = Options()
-    options.headless = True
+    options.headless = False
     options.add_argument("--window-size=1920,1080")
 
     # Remove Chrome browser debugging info from the console

@@ -88,7 +88,7 @@ def insert_data(target_object, data):
         return target_object.format("_", data)
 
 
-def main():
+def GenerateTestsFromCases():
     methods, page, element = get_methods()
     tests = get_tests_from_cases()
 
@@ -102,7 +102,7 @@ def main():
                 file.write("from Pages.BaseElement import BaseElement\n")
                 file.write("from Pages.BasePage import BasePage\n\n\n")
 
-            test_name = test.strip("case_").strip(".txt").replace(" ", "_")
+            test_name = test.strip("case_").replace(".txt", '').replace(" ", "_")
             file.write(f"def test_{test_name}(driver):\n")
             for instruction in actions:
                 action = instruction[0].replace(" ", "_")
@@ -121,4 +121,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    GenerateTestsFromCases()

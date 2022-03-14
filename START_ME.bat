@@ -4,7 +4,7 @@
 : Activate venv
 : ====================
 echo Activating virtual environment...
-set venv_name=venv
+set venv_name=venv2
 
 py -m venv %venv_name%
 call %venv_name%\Scripts\activate
@@ -16,9 +16,9 @@ echo Activating virtual environment... Done
 : ====================
 echo Installing dependencies...
 pip install -r requirements.txt 1>nul 2>&1
+cls
 echo Activating virtual environment... Done
 echo Installing dependencies... Done
 
-pip list
-
-timeout -1
+cls
+py main.py

@@ -1,3 +1,5 @@
+from time import time
+
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -12,9 +14,11 @@ class BasePage:
         self.logo = BaseElement('//*[@id="branding"]/a[1]/img', self.driver, "logo")
 
     def _open(self):
-        print(f"Opening {self.url}")
+        start_time = time()
         self.driver.get(self.url)
         self._wait_until_current_url_is(self.url)
+        finish_time = round(time() - start_time, 1)
+        print(f"[{finish_time} s] Opening {self.url} ")
 
     def _wait_until_current_url_is(self, target_url):
         wait = WebDriverWait(self.driver, timeout=WAIT_FOR_ELEMENT)

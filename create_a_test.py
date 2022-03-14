@@ -2,9 +2,10 @@ import os.path
 
 from Pages.BaseElement import BaseElement
 from Pages.BasePage import BasePage
+from generate_tests_from_cases import GenerateTestsFromCases
 
 
-class Main:
+class CreateATestCase:
     def __init__(self):
         self.page = "Page actions"
         self.element = "Element actions"
@@ -34,7 +35,7 @@ class Main:
             f'{"=" * self.screen_width}',
         ]
 
-        file_name = input("File name: ").strip()
+        file_name = input("Test case name: ").strip()
         file_path = os.path.join("TestCases", f"case_{file_name}.txt")
 
         with open(file_path, "w") as file:
@@ -46,7 +47,19 @@ class Main:
             for element in ["\nGiven", "When", "Then"]:
                 file.write(f"{element}\n")
 
+        os.system("cls")
+        print("Please, fill in the test case and save it.")
         os.system(file_path)
+        print("Would you like to start all the tests?")
+        print("1 - Yes")
+        print("2 - No")
+        choice = int(input(">>> "))
+        options = {
+            1: GenerateTestsFromCases,
+            2: exit
+        }
+
+        options[choice]()
 
     def get_methods(self):
         p = BasePage("", "")
@@ -62,4 +75,4 @@ class Main:
 
 
 if __name__ == "__main__":
-    Main()
+    CreateATestCase()

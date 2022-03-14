@@ -1,3 +1,5 @@
+from time import time
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as _
@@ -30,11 +32,19 @@ class BaseElement:
         self._wait_until_element_value_is(keys)
 
     def _click(self):
-        print(f'''Clicking "{self.name.replace('_', ' ')}" ({self.xpath})''')
+        start_time = time()
         element = self._wait_until_element_appears()
         ActionChains(self.driver).move_to_element(element).perform()
         element.click()
+        finish_time = round(time() - start_time, 1)
+        print(
+            f"""[{finish_time} s] Clicking "{self.name.replace('_', ' ')}" ({self.xpath})"""
+        )
 
     def _is_visible(self):
-        print(f'''Waiting until "{self.name.replace('_', ' ')}" ({self.xpath}) is visible''')
+        start_time = time()
+        finish_time = round(time() - start_time, 1)
         self._wait_until_element_appears()
+        print(
+            f"""[{finish_time} s] Waiting until "{self.name.replace('_', ' ')}" ({self.xpath}) is visible"""
+        )
