@@ -1,0 +1,17 @@
+# =====================================================================
+#                  !!! YOU MUST FOLLOW THIS PATTERN !!!                
+# =====================================================================
+# Given/When/Then/And + I + action + variable name + (variable value)
+#   Given/When/Then/And + variable name + (variable value) + action  
+# ---------------------------------------------------------------------
+#           Given I open a website (https://www.google.com/)         
+#                                   or                                 
+#             Then the logo (//*@class=logo) is visible           
+# ---------------------------------------------------------------------
+# Page actions: open, wait_until_current_url_is
+# Element actions: click, is_visible, send_keys, wait_until_element_appears, wait_until_element_value_is
+# =====================================================================
+
+Given I open [a web page] (https://vot-enot.com/)
+When I click [rules button] (//*[@id="menu-item-538"]/a/span)
+Then [rules title] (//*[@id="main"]/header/div/h1) is visible

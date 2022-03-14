@@ -1,0 +1,14 @@
+# =====================================================================
+#                    !!! YOU MUST FOLLOW THIS PATTERN !!!
+# =====================================================================
+# Given/When/Then/And + I + action + [variable name] + (variable value)
+# Given/When/Then/And + [variable name] + (variable value) + action
+# ----------------------------------------------------------------------
+#             Given I open [a website] (https://www.google.com/)
+# or
+#             Then [the logo] (//*[@class='logo') is visible
+# ----------------------------------------------------------------------
+
+Given I open [Irish website] (https://www.kdmid.ru/docs.aspx)
+When I click [consulate functions button] (//*[@id="button_cons2"]/a)
+Then [get a passport button] (//*[@id="nav"]/ul/li[2]/a) is visible
