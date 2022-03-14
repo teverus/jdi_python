@@ -16,6 +16,8 @@ class CreateATestCase:
 
     def run(self):
 
+        page_methods = ['   {}'.format(_[1:]) for _ in self.methods[self.page]]
+        element_methods = ['   {}'.format(_[1:]) for _ in self.methods[self.element]]
         lines = [
             f'{"=" * self.screen_width}',
             "!!! YOU MUST FOLLOW THIS PATTERN !!!".center(self.screen_width),
@@ -30,8 +32,11 @@ class CreateATestCase:
             "or".center(self.screen_width),
             "Then [the logo] (//*[@class='logo') is visible".center(self.screen_width),
             f'{"-" * self.screen_width}',
-            f"{self.page}: {self.methods[self.page]}",
-            f"{self.element}: {self.methods[self.element]}",
+            f"== {self.page} ==",
+            page_methods,
+            " ",
+            f"== {self.element} ==",
+            element_methods,
             f'{"=" * self.screen_width}',
         ]
 
@@ -40,9 +45,15 @@ class CreateATestCase:
 
         with open(file_path, "w") as file:
             for line in lines:
-                for element in ["[", "]", "'_", "'"]:
-                    line = line.replace(element, "")
-                file.write(f"# {line}\n")
+                if isinstance(line, list):
+                    for sub_line in line:
+                        for element in ["'_", "'"]:
+                            sub_line = sub_line.replace(element, "")
+                        file.write(f"# {sub_line}\n")
+                else:
+                    for element in ["'_", "'"]:
+                        line = line.replace(element, "")
+                    file.write(f"# {line}\n")
 
             for element in ["\nGiven", "When", "Then"]:
                 file.write(f"{element}\n")
