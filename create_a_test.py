@@ -35,8 +35,9 @@ class Main:
         ]
 
         file_name = input("File name: ").strip()
+        file_path = os.path.join("TestCases", f"case_{file_name}.txt")
 
-        with open(os.path.join("Tests", f"case_{file_name}.txt"), "w") as file:
+        with open(file_path, "w") as file:
             for line in lines:
                 for element in ["[", "]", "'_", "'"]:
                     line = line.replace(element, "")
@@ -44,6 +45,8 @@ class Main:
 
             for element in ["\nGiven", "When", "Then"]:
                 file.write(f"{element}\n")
+
+        os.system(file_path)
 
     def get_methods(self):
         p = BasePage("", "")

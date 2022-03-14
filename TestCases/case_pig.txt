@@ -1,0 +1,17 @@
+# =====================================================================
+#                  !!! YOU MUST FOLLOW THIS PATTERN !!!                
+# =====================================================================
+# Given/When/Then/And + I + action + variable name + (variable value)
+#   Given/When/Then/And + variable name + (variable value) + action  
+# ---------------------------------------------------------------------
+#           Given I open a website (https://www.google.com/)         
+#                                   or                                 
+#             Then the logo (//*@class=logo) is visible           
+# ---------------------------------------------------------------------
+# Page actions: open, wait_until_current_url_is
+# Element actions: click, is_visible, send_keys, wait_until_element_appears, wait_until_element_value_is
+# =====================================================================
+
+Given I open [agroinvestor website] (https://www.agroinvestor.ru/technologies/article/14727-rodoslovnaya-dlya-svini/)
+When I click [read an issue] (/html/body/div[2]/main/div[3]/div[2]/section/div[1]/div[1]/div/div[2]/a)
+Then [buy a subscription] (/html/body/div[2]/main/div[3]/div[2]/div/section/div[1]/div[1]/div[1]/div[2]/a) is visible

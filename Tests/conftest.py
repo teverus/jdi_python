@@ -139,5 +139,7 @@ def pytest_configure(config):
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_sessionfinish(session, exitstatus):
-    for element in ["JAVA_HOME", "Packages", "Plugins", "Platform", "Python"]:
+    for element in ["JAVA_HOME", "Packages", "Plugins",
+                    # "Platform", "Python"
+                    ]:
         del session.config._metadata[element]

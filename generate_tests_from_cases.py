@@ -4,6 +4,7 @@ import re
 from Pages.BaseElement import BaseElement
 from Pages.BasePage import BasePage
 
+TEST_CASES_DIR = "TestCases"
 TEST_DIR = "Tests"
 DELIMITER = "case"
 
@@ -16,14 +17,14 @@ def get_methods():
     return page_method + element_method, p, e
 
 
-def get_tests():
-    files = os.listdir(TEST_DIR)
+def get_tests_from_cases():
+    files = os.listdir(TEST_CASES_DIR)
     return [file for file in files if file.startswith(DELIMITER)]
 
 
 def get_steps(test):
     steps = []
-    with open(os.path.join(TEST_DIR, test), "r") as file:
+    with open(os.path.join(TEST_CASES_DIR, test), "r") as file:
         lines = file.readlines()
         for line in lines:
             for word in ["Given", "When", "Then", "And", "But"]:
@@ -89,7 +90,7 @@ def insert_data(target_object, data):
 
 def main():
     methods, page, element = get_methods()
-    tests = get_tests()
+    tests = get_tests_from_cases()
 
     for index, test in enumerate(tests, 1):
         actions = get_actions(test, methods)
