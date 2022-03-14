@@ -7,9 +7,10 @@ from constants import WAIT_FOR_ELEMENT
 
 
 class BaseElement:
-    def __init__(self, xpath, driver):
+    def __init__(self, xpath, driver, name):
         self.driver = driver
         self.xpath = xpath
+        self.name = name
 
     def _wait_until_element_appears(self):
         wait = WebDriverWait(self.driver, timeout=WAIT_FOR_ELEMENT)
@@ -29,11 +30,11 @@ class BaseElement:
         self._wait_until_element_value_is(keys)
 
     def _click(self):
-        print(f"Clicking {self.xpath}")
+        print(f'''Clicking "{self.name.replace('_', ' ')}" ({self.xpath})''')
         element = self._wait_until_element_appears()
         ActionChains(self.driver).move_to_element(element).perform()
         element.click()
 
     def _is_visible(self):
-        print(f"Waiting until {self.xpath} is visible")
+        print(f'''Waiting until "{self.name.replace('_', ' ')}" ({self.xpath}) is visible''')
         self._wait_until_element_appears()

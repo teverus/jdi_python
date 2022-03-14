@@ -47,7 +47,7 @@ class Main:
 
     def get_methods(self):
         p = BasePage("", "")
-        e = BaseElement("", "")
+        e = BaseElement("", "", "")
         page_methods = sorted([
             m for m in dir(p) if m.startswith("_") and not m.startswith("__")
         ])

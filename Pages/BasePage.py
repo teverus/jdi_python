@@ -9,7 +9,7 @@ class BasePage:
     def __init__(self, driver, url):
         self.driver = driver
         self.url = url
-        self.logo = BaseElement('//*[@id="branding"]/a[1]/img', self.driver)
+        self.logo = BaseElement('//*[@id="branding"]/a[1]/img', self.driver, "logo")
 
     def _open(self):
         print(f"Opening {self.url}")

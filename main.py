@@ -10,7 +10,7 @@ DELIMITER = "case"
 
 def get_methods():
     p = BasePage("", "")
-    e = BaseElement("", "")
+    e = BaseElement("", "", "")
     page_method = [m for m in dir(p) if m.startswith("_") and not m.startswith("__")]
     element_method = [m for m in dir(e) if m.startswith("_") and not m.startswith("__")]
     return page_method + element_method, p, e
@@ -59,7 +59,7 @@ def get_object(action, page, element):
     if condition1:
         return '{0} = BasePage(driver, url="{1}")'
     elif condition2:
-        return '{0} = BaseElement("{1}", driver)'
+        return '{0} = BaseElement("{1}", driver, "{0}")'
     else:
         raise Exception(f'\n[ERROR] Something is wrong with this method: "{action}"')
 
