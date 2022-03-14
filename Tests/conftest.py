@@ -128,15 +128,16 @@ def pytest_runtest_makereport(item):
         extra.append(pytest_html.extras.image(file_path))
         test.extra = extra
 
-# def pytest_configure(config):
-#     config._metadata["Browser"] = BROWSER
-#     config._metadata["User type"] = USER
-#     config._metadata["Environment"] = ENV
-#     config._metadata["Language"] = LANG
-#     config._metadata["Headless"] = HEADLESS
+
+def pytest_configure(config):
+    #     config._metadata["Browser"] = BROWSER
+    #     config._metadata["User type"] = USER
+    #     config._metadata["Environment"] = ENV
+    #     config._metadata["Language"] = LANG
+    config._metadata["Headless"] = True
 
 
-# @pytest.hookimpl(tryfirst=True)
-# def pytest_sessionfinish(session, exitstatus):
-#     for element in ["JAVA_HOME", "Packages", "Plugins", "Platform", "Python"]:
-#         del session.config._metadata[element]
+@pytest.hookimpl(tryfirst=True)
+def pytest_sessionfinish(session, exitstatus):
+    for element in ["JAVA_HOME", "Packages", "Plugins", "Platform", "Python"]:
+        del session.config._metadata[element]

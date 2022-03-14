@@ -116,7 +116,7 @@ def main():
             else:
                 file.write("\n\n")
     else:
-        os.system("pytest -v")
+        os.system("cls && pytest -v & report.html")
 
 
 if __name__ == "__main__":

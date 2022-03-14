@@ -12,6 +12,7 @@ class BasePage:
         self.logo = BaseElement('//*[@id="branding"]/a[1]/img', self.driver)
 
     def _open(self):
+        print(f"Opening {self.url}")
         self.driver.get(self.url)
         self._wait_until_current_url_is(self.url)
 
