@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-from Pages.WebSite import WebSite
+# from Pages.WebSite import WebSite
 
 
 @pytest.fixture(autouse=True)
@@ -30,6 +30,6 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture()
-def _(driver):
-    return WebSite(driver)
+# @pytest.fixture()
+# def _(driver):
+#     return WebSite(driver)
